@@ -24,3 +24,16 @@ setInterval(updateTime, 1000);
 
 // Sayfa yüklendiðinde bir kere çalýþtýr
 updateTime();
+
+// Kontrolleri ekle
+document.getElementById('bgColor').addEventListener('input', function () {
+    document.getElementById('widget').style.backgroundColor = this.value;
+});
+
+document.getElementById('textColor').addEventListener('input', function () {
+    document.getElementById('widget').style.color = this.value;
+});
+
+document.getElementById('fontSize').addEventListener('input', function () {
+    document.getElementById('widget').style.fontSize = `${this.value}px`;
+});
