@@ -34,6 +34,19 @@ document.getElementById('textColor').addEventListener('input', function () {
     document.getElementById('widget').style.color = this.value;
 });
 
+document.getElementById('fontFamily').addEventListener('change', function () {
+    document.getElementById('widget').style.fontFamily = this.value;
+});
+
 document.getElementById('fontSize').addEventListener('input', function () {
-    document.getElementById('widget').style.fontSize = `${this.value}px`;
+    document.getElementById('time').style.fontSize = `${this.value}px`;
+    document.getElementById('date').style.fontSize = `${this.value / 2}px`;
+});
+
+document.getElementById('widgetWidth').addEventListener('input', function () {
+    document.getElementById('widget').style.width = `${this.value}px`;
+});
+
+document.getElementById('widgetHeight').addEventListener('input', function () {
+    document.getElementById('widget').style.height = `${this.value}px`;
 });
