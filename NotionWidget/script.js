@@ -17,6 +17,23 @@ function updateTime() {
     // HTML'e ekle
     timeElement.textContent = timeString;
     dateElement.textContent = dateString;
+
+    // Analog saat için açýlarý hesapla
+    const hourHand = document.querySelector('.hour-hand');
+    const minuteHand = document.querySelector('.minute-hand');
+    const secondHand = document.querySelector('.second-hand');
+
+    const hour = now.getHours() % 12;
+    const minute = now.getMinutes();
+    const second = now.getSeconds();
+
+    const hourDeg = (hour * 30) + (minute * 0.5);
+    const minuteDeg = (minute * 6) + (second * 0.1);
+    const secondDeg = second * 6;
+
+    hourHand.style.transform = `rotate(${hourDeg}deg)`;
+    minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
+    secondHand.style.transform = `rotate(${secondDeg}deg)`;
 }
 
 // Her saniye güncelle
@@ -58,5 +75,22 @@ document.getElementById('bgGif').addEventListener('input', function () {
         widget.style.backgroundSize = 'cover';
     } else {
         widget.style.backgroundImage = 'none';
+    }
+});
+
+// Dijital ve analog saat arasýnda geçiþ yap
+document.getElementById('toggleMode').addEventListener('click', function () {
+    const digitalClock = document.getElementById('digitalClock');
+    const analogClock = document.getElementById('analogClock');
+    const toggleButton = document.getElementById('toggleMode');
+
+    if (digitalClock.style.display === 'block') {
+        digitalClock.style.display = 'none';
+        analogClock.style.display = 'block';
+        toggleButton.textContent = 'Dijital Saate Geç';
+    } else {
+        digitalClock.style.display = 'block';
+        analogClock.style.display = 'none';
+        toggleButton.textContent = 'Analog Saate Geç';
     }
 });
