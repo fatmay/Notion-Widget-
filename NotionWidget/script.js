@@ -50,3 +50,13 @@ document.getElementById('widgetWidth').addEventListener('input', function () {
 document.getElementById('widgetHeight').addEventListener('input', function () {
     document.getElementById('widget').style.height = `${this.value}px`;
 });
+
+document.getElementById('bgGif').addEventListener('input', function () {
+    const widget = document.getElementById('widget');
+    if (this.value) {
+        widget.style.backgroundImage = `url('${this.value}')`;
+        widget.style.backgroundSize = 'cover';
+    } else {
+        widget.style.backgroundImage = 'none';
+    }
+});
