@@ -1,4 +1,4 @@
-function updateTime() {
+ï»¿/*function updateTime() {
     const timeElement = document.getElementById('time');
     const dateElement = document.getElementById('date');
 
@@ -18,7 +18,7 @@ function updateTime() {
     timeElement.textContent = timeString;
     dateElement.textContent = dateString;
 
-    // Analog saat için açýlarý hesapla
+    // Analog saat iï¿½in aï¿½ï¿½larï¿½ hesapla
     const hourHand = document.querySelector('.hour-hand');
     const minuteHand = document.querySelector('.minute-hand');
     const secondHand = document.querySelector('.second-hand');
@@ -36,10 +36,10 @@ function updateTime() {
     secondHand.style.transform = `rotate(${secondDeg}deg)`;
 }
 
-// Her saniye güncelle
+// Her saniye gï¿½ncelle
 setInterval(updateTime, 1000);
 
-// Sayfa yüklendiðinde bir kere çalýþtýr
+// Sayfa yï¿½klendiï¿½inde bir kere ï¿½alï¿½ï¿½tï¿½r
 updateTime();
 
 // Kontrolleri ekle
@@ -78,7 +78,7 @@ document.getElementById('bgGif').addEventListener('input', function () {
     }
 });
 
-// Dijital ve analog saat arasýnda geçiþ yap
+// Dijital ve analog saat arasï¿½nda geï¿½iï¿½ yap
 document.getElementById('toggleMode').addEventListener('click', function () {
     const digitalClock = document.getElementById('digitalClock');
     const analogClock = document.getElementById('analogClock');
@@ -87,10 +87,12 @@ document.getElementById('toggleMode').addEventListener('click', function () {
     if (digitalClock.style.display === 'block') {
         digitalClock.style.display = 'none';
         analogClock.style.display = 'block';
-        toggleButton.textContent = 'Dijital Saate Geç';
+        toggleButton.textContent = 'Dijital Saate Geï¿½';
     } else {
         digitalClock.style.display = 'block';
         analogClock.style.display = 'none';
-        toggleButton.textContent = 'Analog Saate Geç';
+        toggleButton.textContent = 'Analog Saate Geï¿½';
     }
-});
+});*/
+
+

@@ -3,75 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notion Widget - Dijital & Analog Saat</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Saat Widget'ı</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f4f4;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .clock {
+            width: 300px;
+            height: 300px;
+            border: 10px solid black;
+            border-radius: 50%;
+            position: relative;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .clock::after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                background: black;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                z-index: 10;
+            }
+
+        .hand {
+            position: absolute;
+            transform-origin: bottom;
+            bottom: 50%;
+            left: 50%;
+            transform: translateX(-50%) rotate(0deg);
+        }
+
+        #hour {
+            width: 6px;
+            height: 80px;
+            background: black;
+        }
+
+        #minute {
+            width: 4px;
+            height: 110px;
+            background: black;
+        }
+
+        #second {
+            width: 2px;
+            height: 120px;
+            background: red;
+        }
+
+        .number {
+            position: absolute;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+            transform: translate(-50%, -50%);
+        }
+
+        #digitalClock {
+            display: none;
+            font-size: 24px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #toggleButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div id="widget" class="widget p-4 rounded shadow">
-            <div id="digitalClock" class="digital-clock">
-                <div id="time" class="time display-4"></div>
-                <div id="date" class="date h3 mt-3"></div>
-            </div>
-            <div id="analogClock" class="analog-clock d-none">
-                <div class="clock-face">
-                    <div class="number number1">1</div>
-                    <div class="number number2">2</div>
-                    <div class="number number3">3</div>
-                    <div class="number number4">4</div>
-                    <div class="number number5">5</div>
-                    <div class="number number6">6</div>
-                    <div class="number number7">7</div>
-                    <div class="number number8">8</div>
-                    <div class="number number9">9</div>
-                    <div class="number number10">10</div>
-                    <div class="number number11">11</div>
-                    <div class="number number12">12</div>
-                    <div class="hand hour-hand"></div>
-                    <div class="hand minute-hand"></div>
-                    <div class="hand second-hand"></div>
-                </div>
-            </div>
-            <button id="toggleMode" class="btn btn-primary mt-3">Analog Saate Geç</button>
-        </div>
-        <div id="controls" class="controls mt-4 p-4 rounded shadow">
-            <h3 class="mb-4">Widget Ayarları</h3>
-            <div class="mb-3">
-                <label for="bgColor" class="form-label">Arka Plan Rengi:</label>
-                <input type="color" id="bgColor" class="form-control form-control-color" value="#ffffff">
-            </div>
-            <div class="mb-3">
-                <label for="textColor" class="form-label">Yazı Rengi:</label>
-                <input type="color" id="textColor" class="form-control form-control-color" value="#000000">
-            </div>
-            <div class="mb-3">
-                <label for="fontFamily" class="form-label">Font Seçin:</label>
-                <select id="fontFamily" class="form-select">
-                    <option value="Arial, sans-serif">Arial</option>
-                    <option value="Georgia, serif">Georgia</option>
-                    <option value="Courier New, monospace">Courier New</option>
-                    <option value="cursive">Cursive</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="fontSize" class="form-label">Yazı Boyutu:</label>
-                <input type="range" id="fontSize" class="form-range" min="16" max="48" value="32">
-            </div>
-            <div class="mb-3">
-                <label for="widgetWidth" class="form-label">Widget Genişliği:</label>
-                <input type="range" id="widgetWidth" class="form-range" min="200" max="800" value="400">
-            </div>
-            <div class="mb-3">
-                <label for="widgetHeight" class="form-label">Widget Yüksekliği:</label>
-                <input type="range" id="widgetHeight" class="form-range" min="100" max="500" value="200">
-            </div>
-            <div class="mb-3">
-                <label for="bgGif" class="form-label">Arka Plan GIF'i (URL):</label>
-                <input type="text" id="bgGif" class="form-control" placeholder="GIF URL'si yapıştırın">
-            </div>
-        </div>
+    <div class="clock" id="clock">
+        <div class="hand" id="hour"></div>
+        <div class="hand" id="minute"></div>
+        <div class="hand" id="second"></div>
+
+        <div class="number" style="top: 10%; left: 50%;">12</div>
+        <div class="number" style="top: 20%; left: 75%;">1</div>
+        <div class="number" style="top: 35%; left: 88%;">2</div>
+        <div class="number" style="top: 50%; left: 90%;">3</div>
+        <div class="number" style="top: 65%; left: 88%;">4</div>
+        <div class="number" style="top: 80%; left: 75%;">5</div>
+        <div class="number" style="top: 90%; left: 50%;">6</div>
+        <div class="number" style="top: 80%; left: 25%;">7</div>
+        <div class="number" style="top: 65%; left: 12%;">8</div>
+        <div class="number" style="top: 50%; left: 10%;">9</div>
+        <div class="number" style="top: 35%; left: 12%;">10</div>
+        <div class="number" style="top: 20%; left: 25%;">11</div>
+
     </div>
-    <script src="script.js"></script>
+
+    <div id="digitalClock">
+        <div id="time"></div>
+        <div id="date"></div>
+    </div>
+
+    <button id="toggleButton">Dijital Saate Geç</button>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            const hourDeg = (hours * 30) + (minutes * 0.5);
+            const minuteDeg = minutes * 6;
+            const secondDeg = seconds * 6;
+
+            document.getElementById('hour').style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+            document.getElementById('minute').style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
+            document.getElementById('second').style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
+        }
+
+        function updateDigitalClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = now.toLocaleDateString('tr-TR', options);
+
+            document.getElementById('time').textContent = timeString;
+            document.getElementById('date').textContent = dateString;
+        }
+
+        function toggleClock() {
+            const analogClock = document.getElementById('clock');
+            const digitalClock = document.getElementById('digitalClock');
+            const toggleButton = document.getElementById('toggleButton');
+
+            if (analogClock.style.display === 'none') {
+                analogClock.style.display = 'flex';
+                digitalClock.style.display = 'none';
+                toggleButton.textContent = 'Dijital Saate Geç';
+            } else {
+                analogClock.style.display = 'none';
+                digitalClock.style.display = 'block';
+                toggleButton.textContent = 'Analog Saate Geç';
+            }
+        }
+
+        document.getElementById('toggleButton').addEventListener('click', toggleClock);
+
+        setInterval(() => {
+            updateClock();
+            updateDigitalClock();
+        }, 1000);
+
+        updateClock();
+        updateDigitalClock();
+    </script>
 </body>
 </html>
